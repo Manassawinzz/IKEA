@@ -15,6 +15,7 @@ function NavDropdownExample() {
 
     return (
         <>
+            <header>admin section&#9822;</header>
             <Container>
                 <img className='menu' src={menuImage} alt="Menu" onClick={handleShow} />
 

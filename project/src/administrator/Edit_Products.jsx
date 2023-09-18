@@ -3,6 +3,8 @@ import { Container, Button, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase'; // Import your Firebase configuration and Firestore instance
 import { query, collection, where, getDocs, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storageRef } from '../firebase';
 
 function Edit_Products() {
     const location = useLocation();
@@ -21,20 +23,31 @@ function Edit_Products() {
     const [selectedFile, setSelectedFile] = useState(null); // Store the selected file
     const [fileName, setFileName] = useState(''); // Store the file name
 
+    const [imageUpload, setImageUpload] = useState(null);
+    const [imageList, setImageList] = useState([]); // Define setImageList here
+
     const handleFileChange = (e) => {
         const file = e.target.files[0]; // Get the first selected file
 
         if (file) {
             setSelectedFile(file);
             setFileName(file.name); // Set the file name
+            setImageUpload(file);
         }
     };
-    
+
 
     const updateUserField = async (collectionName, property, value) => {
         const querySnapshot = await getDocs(query(collection(db, collectionName), where('name', '==', productName)));
         if (!querySnapshot.empty) {
             await updateDoc(querySnapshot.docs[0].ref, { [property]: value });
+        }
+
+        if (imageUpload) {
+            const imageRef = ref(storageRef, `products/${imageUpload.name}`);
+            const snapshot = await uploadBytes(imageRef, imageUpload);
+            const url = await getDownloadURL(snapshot.ref);
+            setImageList((prev) => [...prev, url]);
         }
     };
 

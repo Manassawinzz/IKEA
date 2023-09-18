@@ -4,3 +4,15 @@
     margin: 20px;
     border-radius: 0px;
 }
+
+.search_bar{
+    display: inline-block;
+    width: 60%;
+}
+
+.search_btn{
+    display: inline-block;
+    margin-left: 1%;
+    background-color: black;
+}
+
