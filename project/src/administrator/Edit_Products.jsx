@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, Form, Image } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
-import { query, collection, where, getDocs, updateDoc } from 'firebase/firestore';
+import { query, collection, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { storageRef } from '../firebase';
 
@@ -12,6 +12,7 @@ function EditProducts() {
     const productId = searchParams.get('id');
 
     const [productData, setProductData] = useState({
+        id: searchParams.get('id') || '',
         name: searchParams.get('name') || '',
         description: searchParams.get('description') || '',
         quantity: searchParams.get('quantity') || '',
@@ -43,6 +44,18 @@ function EditProducts() {
             const snapshot = await uploadBytes(imageRef, imageUpload);
             const url = await getDownloadURL(snapshot.ref);
             setProductData((prevData) => ({ ...prevData, img: url }));
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            const productDocRef = doc(db, 'products', productData.id);
+            await deleteDoc(productDocRef);
+            console.log("Document successfully deleted!");
+            alert("Document successfully deleted!");
+        } catch (error) {
+            console.error("Error deleting document: ", error);
+            alert("Error deleting document: " + error.message);
         }
     };
 
@@ -121,6 +134,7 @@ function EditProducts() {
                 <br />
                 <Button type='submit'>Update</Button>
             </Form>
+            <Button onClick={handleDelete} variant='danger'>delete</Button>
         </Container>
     );
 }
