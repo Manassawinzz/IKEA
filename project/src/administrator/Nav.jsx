@@ -26,7 +26,7 @@ function NavDropdownExample() {
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                        <Navbar.Brand href=""> <div className='Brand' >ผลิตภัณฑ์ของคุณ</div></Navbar.Brand>
+                        <Navbar.Brand href="/adminhomepage"> <div className='Brand' >ผลิตภัณฑ์ของคุณ</div></Navbar.Brand>
                         <Navbar.Brand href="/add_products"> <div className='Brand' >เพิ่มผลิตภัณฑ์</div></Navbar.Brand>
                     </Offcanvas.Body>
                 </Offcanvas>

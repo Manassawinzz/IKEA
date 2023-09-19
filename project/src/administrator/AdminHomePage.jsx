@@ -64,7 +64,7 @@ function Home() {
                             product.description
                         )}&image=${encodeURIComponent(product.image)}&price=${encodeURIComponent(
                             product.price
-                        )}`}
+                        )}&imgpath=${imageList.find((url) => url.includes(product.img))}`}
                         target="_blank"
                         key={index}
                     >
