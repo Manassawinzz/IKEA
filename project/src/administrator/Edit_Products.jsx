@@ -5,6 +5,7 @@ import { db } from '../firebase';
 import { query, collection, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { storageRef } from '../firebase';
+import Nav from './Nav';
 
 function EditProducts() {
     const location = useLocation();
@@ -79,63 +80,64 @@ function EditProducts() {
     }, []);
 
     return (
-        <Container>
+        <>
+            <Nav />
+            <Container>
+                <Image
+                    className='img'
+                    src={imageList.find((url) => url.includes(productData.image))}
+                    style={{ width: '290px', height: '300px' }}
+                />
 
-            {/* {imageList.find((url) => url.includes(productData.image))} */}
-            <Image
-                className='img'
-                src={imageList.find((url) => url.includes(productData.image))}
-                style={{ width: '290px', height: '300px' }}
-            />
-
-            <Form onSubmit={handleUpdate}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        value={productData.name}
-                        onChange={(e) => setProductData({ ...productData, name: e.target.value })}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        type='text'
-                        value={productData.description}
-                        onChange={(e) =>
-                            setProductData({ ...productData, description: e.target.value })
-                        }
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Quantity</Form.Label>
-                    <Form.Control
-                        type='number'
-                        value={productData.quantity}
-                        onChange={(e) =>
-                            setProductData({ ...productData, quantity: e.target.value })
-                        }
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control
-                        type='number'
-                        value={productData.price}
-                        onChange={(e) =>
-                            setProductData({ ...productData, price: e.target.value })
-                        }
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Image</Form.Label>
-                    <Form.Control type='file' onChange={handleFileChange} />
-                </Form.Group>
-                <br />
-                <Button type='submit'>Update</Button>
-            </Form>
-            <Button onClick={handleDelete} variant='danger'>delete</Button>
-        </Container>
+                <Form onSubmit={handleUpdate}>
+                    <Form.Group>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            value={productData.name}
+                            onChange={(e) => setProductData({ ...productData, name: e.target.value })}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            type='text'
+                            value={productData.description}
+                            onChange={(e) =>
+                                setProductData({ ...productData, description: e.target.value })
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Quantity</Form.Label>
+                        <Form.Control
+                            type='number'
+                            value={productData.quantity}
+                            onChange={(e) =>
+                                setProductData({ ...productData, quantity: e.target.value })
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type='number'
+                            value={productData.price}
+                            onChange={(e) =>
+                                setProductData({ ...productData, price: e.target.value })
+                            }
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control type='file' onChange={handleFileChange} />
+                    </Form.Group>
+                    <br />
+                    <Button type='submit'>Update</Button>
+                </Form>
+                <Button onClick={handleDelete} variant='danger'>delete</Button>
+            </Container>
+        </>
     );
 }
 

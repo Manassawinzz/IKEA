@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Alert, Button } from 'react-bootstrap';
+import { Form, Alert, Button , Image } from 'react-bootstrap';
 import { useUserAuth } from '../context/UserAuthContext'; //useContext
 import { db } from '../firebase'; //database
 import { collection, addDoc } from 'firebase/firestore'; //firestore
@@ -9,6 +9,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import "./style/Login.css";
+import img5 from "./image/img5.jpg";
+import img6 from "./image/img6.jpg"
+import img7 from "./image/img7.jpg"
+import img8 from "./image/img8.jpg"
 function Register() {
 
   const [error, setError] = useState('');
@@ -60,19 +65,51 @@ function Register() {
       <br />
       <br />
       <Row>
-        <Col></Col>
+        <Col> <Row>
+          <Col className="size" md={5}>
+            <Row>
+              <Col md={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                <div className="aspect-ratio-box">
+                  <Image src={img5} alt="Image 1" className="resize" />
+                </div>
+              </Col>
+              <Col md={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                <div className="aspect-ratio-box">
+                  <Image src={img6} alt="Image 2" className="resize" />
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                <div className="aspect-ratio-box">
+                  <Image src={img7} alt="Image 3" className="resize" />
+                </div>
+              </Col>
+              <Col md={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+                <div className="aspect-ratio-box">
+                  <Image src={img8} alt="Image 4" className="resize" />
+                </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row></Col>
         <Col>
           <Row>
-            <Col>
+            <Col className="block_2">
               <br />
-              <center><h2 className="mb-3">Register</h2></center>
+              <h2 className="mb-3">สมัครสมาชิก</h2>
+              <h6 className="mb-3">
+                เข้าสู่ระบบหรือสมัครสมาชิก IKEA Family
+                วันนี้เพื่อพบกับประสบการณ์ที่เป็นส่วนตัวยิ่งขึ้น
+              </h6>
 
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group
-                  className="mb-3 d-flex justify-content-center"
+                  className="mb-3"
                   controlId="formBasicEmail"
                 >
+                  <Form.Label>Email address</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="Email address"
@@ -81,7 +118,8 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3 d-flex justify-content-center">
+                <Form.Group className="mb-3">
+                  <Form.Label>Username</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Username"
@@ -90,7 +128,8 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3 d-flex justify-content-center">
+                <Form.Group className="mb-3">
+                  <Form.Label>Phone number</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Phone number"
@@ -100,9 +139,10 @@ function Register() {
                 </Form.Group>
 
                 <Form.Group
-                  className="mb-3 d-flex justify-content-center"
+                  className="mb-3"
                   controlId="formBasicPassword"
                 >
+                  <Form.Label>Password</Form.Label>
                   <Form.Control
                     type="password"
                     placeholder="Password"
@@ -112,8 +152,8 @@ function Register() {
                 </Form.Group>
 
                 <div className="d-grid gap-2 justify-content-center">
-                  <Button className="custom-button-style" type="submit">
-                    SignUp
+                  <Button className="custom-button-style" variant="warning" type="submit">
+                    SignUp &#8811;
                   </Button>
                 </div>
               </Form>
@@ -124,9 +164,9 @@ function Register() {
             </Col>
           </Row>
         </Col>
-        <Col></Col>
-      </Row>
-    </Container>
+
+      </Row >
+    </Container >
   );
 }
 

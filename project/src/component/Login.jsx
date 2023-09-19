@@ -74,11 +74,13 @@ function Login() {
             <Col className="block">
               <br />
 
+              <h2 className="mb-3">
+                เข้าสู่ระบบ
+              </h2>
               <h6 className="mb-3">
-                เข้าสู่ระบบหรือสมัครสมาชิก IKEA Family
+              เข้าสู่ระบบหรือสมัครสมาชิก IKEA Family
                 วันนี้เพื่อพบกับประสบการณ์ที่เป็นส่วนตัวยิ่งขึ้น
               </h6>
-
               {error && <Alert variant="danger">{error}</Alert>}
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">

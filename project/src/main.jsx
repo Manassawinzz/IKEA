@@ -28,6 +28,7 @@ import Store from './administrator/Store.jsx';
 import Create from './administrator/Create.jsx';
 import Add_Products from './administrator/Add_Products.jsx';
 import Edit_Products from './administrator/Edit_Products.jsx'
+import Product_List from './administrator/Product_List.jsx';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: '/edit_products',
     element: <Edit_Products />
+  },
+  {
+    path: '/product_list',
+    element: <Product_List />
   }
 ]);
 
