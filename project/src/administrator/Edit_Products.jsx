@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button, Form, Image } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import { query, collection, where, getDocs, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
 import { storageRef } from '../firebase';
 
 function EditProducts() {
@@ -16,8 +16,7 @@ function EditProducts() {
         description: searchParams.get('description') || '',
         quantity: searchParams.get('quantity') || '',
         price: searchParams.get('price') || '',
-        imgpath: searchParams.get('imgpath') || '',
-        token: searchParams.get('token') || ''
+        image: searchParams.get('image') || '',
     });
 
     const [imageUpload, setImageUpload] = useState(null);
@@ -56,14 +55,26 @@ function EditProducts() {
         alert('Updated');
     };
 
+    const [imageList, setImageList] = useState([]);
+
+    useEffect(() => {
+        const imageListRef = ref(storageRef, 'products/');
+        listAll(imageListRef)
+            .then((response) => Promise.all(response.items.map((item) => getDownloadURL(item))))
+            .then((urls) => setImageList(urls))
+            .catch((error) => console.error('Error listing images:', error));
+    }, []);
+
     return (
         <Container>
-            {/* {productData.imgpath + productData.token}
+
+            {/* {imageList.find((url) => url.includes(productData.image))} */}
             <Image
                 className='img'
-                src={productData.imgpath + productData.token}
+                src={imageList.find((url) => url.includes(productData.image))}
                 style={{ width: '290px', height: '300px' }}
-            /> */}
+            />
+
             <Form onSubmit={handleUpdate}>
                 <Form.Group>
                     <Form.Label>Name</Form.Label>
