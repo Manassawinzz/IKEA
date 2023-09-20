@@ -6,7 +6,7 @@ import './style/Nav.css'
 import { Navbar } from 'react-bootstrap';
 import menuImage from '../image/menu.png';  // Import the image
 
-function NavDropdownExample() {
+function Nav() {
 
     const [show, setShow] = useState(false);
 
@@ -33,9 +33,8 @@ function NavDropdownExample() {
                     </Offcanvas.Body>
                 </Offcanvas>
             </Container>
-
         </>
     );
 }
 
-export default NavDropdownExample;
+export default Nav;

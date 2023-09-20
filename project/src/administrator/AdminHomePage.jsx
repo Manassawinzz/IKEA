@@ -53,7 +53,7 @@ function Home() {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <Button className='search_btn' onClick={fetchProducts}>find</Button>
+                    <Button className='search_btn' onClick={fetchProducts}>search</Button>
                 </Form.Group>
                 <hr />
                 {products.map((product, index) => (

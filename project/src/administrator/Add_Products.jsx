@@ -11,6 +11,7 @@ function Add_Products() {
     const [description, setDescription] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
+    const [type, setType] = useState('');
 
     const [selectedFile, setSelectedFile] = useState(null); // Store the selected file
     const [fileName, setFileName] = useState(''); // Store the file name
@@ -36,6 +37,7 @@ function Add_Products() {
             description: description,
             quantity: quantity,
             price: price,
+            type: type,
             img: fileName
         });
 
@@ -53,6 +55,7 @@ function Add_Products() {
         setPrice('');
         setSelectedFile(null);
         setFileName('');
+        setType('');
     };
 
     return (
@@ -90,6 +93,14 @@ function Add_Products() {
                             type='number'
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Type</Form.Label>
+                        <Form.Control
+                            type='text'
+                            value={type}
+                            onChange={(e) => setType(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group>
