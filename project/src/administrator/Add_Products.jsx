@@ -4,6 +4,7 @@ import { db } from '../firebase'; // database
 import { collection, addDoc } from 'firebase/firestore'; // firestore
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storageRef } from '../firebase';
+import Nav from './Nav'
 
 function Add_Products() {
     const [name, setName] = useState('');
@@ -55,51 +56,55 @@ function Add_Products() {
     };
 
     return (
-        <Container>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type='text'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control
-                        type='text'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Quantity</Form.Label>
-                    <Form.Control
-                        type='number'
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control
-                        type='number'
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Image</Form.Label>
-                    <Form.Control
-                        type='file'
-                        onChange={handleFileChange}
-                    />
-                </Form.Group>
-                <br></br>
-                <Button type='submit'>Submit</Button>
-            </Form>
-        </Container>
+        <>
+            <Nav />
+            <Container>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type='text'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control
+                            type='text'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Quantity</Form.Label>
+                        <Form.Control
+                            type='number'
+                            value={quantity}
+                            onChange={(e) => setQuantity(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type='number'
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                            type='file'
+                            onChange={handleFileChange}
+                        />
+                    </Form.Group>
+                    <br></br>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </Container>
+        </>
+
     );
 }
 

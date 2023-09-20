@@ -24,7 +24,6 @@ import Login from './component/Login.jsx'
 import Home from './component/Home.jsx'
 
 import AdminHomePage from './administrator/AdminHomePage.jsx'
-import Store from './administrator/Store.jsx';
 import Create from './administrator/Create.jsx';
 import Add_Products from './administrator/Add_Products.jsx';
 import Edit_Products from './administrator/Edit_Products.jsx'
@@ -51,10 +50,6 @@ const router = createBrowserRouter([
   {
     path: '/adminhomepage',
     element: <AdminHomePage />
-  },
-  {
-    path: '/store',
-    element: <Store />
   },
   {
     path: '/create',

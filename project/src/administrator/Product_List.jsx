@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react'
 import Nav from './Nav'
 import { Container, Table, Button, Form } from 'react-bootstrap'
 import { db } from '../firebase';
-import { query, collection, where, getDocs, updateDoc, doc, deleteDoc } from 'firebase/firestore';
+import { query, collection, where, getDocs, updateDoc, doc, deleteDoc, orderBy } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
 function Product_List() {
 
     const [products, setProducts] = useState([]);
 
+    const [searchTerm, setSearchTerm] = useState('');
+
     const fetchProducts = async () => {
         try {
             const q = query(
-                collection(db, 'products')
+                collection(db, 'products'),
+                where('name', '>=', searchTerm),
+                orderBy('name')
             );
 
             const querySnapshot = await getDocs(q);
@@ -42,6 +46,16 @@ function Product_List() {
         <>
             <Nav />
             <Container>
+                <Form.Group className='search_group'>
+                    <Form.Control
+                        className='search_bar'
+                        type="text"
+                        placeholder="Search by product name"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <Button className='search_btn' onClick={fetchProducts}>find</Button>
+                </Form.Group>
 
                 <Table striped bordered hover>
                     <thead>
