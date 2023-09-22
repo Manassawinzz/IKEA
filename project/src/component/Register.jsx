@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Alert, Button , Image } from 'react-bootstrap';
+import { Form, Alert, Button, Image } from 'react-bootstrap';
 import { useUserAuth } from '../context/UserAuthContext'; //useContext
 import { db } from '../firebase'; //database
 import { collection, addDoc } from 'firebase/firestore'; //firestore
 
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col } from "react-bootstrap";
 
 import "./style/Login.css";
 import img5 from "./image/img5.jpg";
@@ -36,22 +34,11 @@ function Register() {
     }
 
     try {
-      // const userDocRef_Users = await addDoc(collection(db, 'User'), {
-      //   email,
-      //   username,
-      //   phone_number,
-      // });
-
-      // const userDocRef_Accounts = await addDoc(collection(db, 'Account'), {
-      //   email,
-      //   posts: 0,
-      //   followers: 0,
-      //   following: 0,
-      //   bio: 'Write your description...',
-      //   image_profile: 'default_user_profile.png',
-      // });
-
-      // console.log('Document written with ID:', userDocRef_Users.id);
+      const userDocRef_Users = await addDoc(collection(db, 'User'), {
+        email,
+        username,
+        phone_number,
+      });
 
       await signUp(email, password);
       navigate('/');
